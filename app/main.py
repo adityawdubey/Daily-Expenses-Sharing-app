@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from app.api.endpoints import users
-from app.api.endpoints import expenses
+from app.api import users, expenses
 
 app = FastAPI()
 
