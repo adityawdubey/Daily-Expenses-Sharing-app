@@ -2,8 +2,8 @@
 
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from app.db import models
-from app.api.schemas import user as user_schema, expenses as expense_schema
+from app.models import models
+from app.schemas import user as user_schema, expenses as expense_schema
 from app.core.database import get_db
 from fastapi.responses import JSONResponse, FileResponse
 import csv
@@ -66,5 +66,4 @@ def download_balance_sheet(user_id: int = None, download: bool = False, db: Sess
                 writer.writerow([expense.id, expense.amount, expense.split_method, expense.user_id])
         
         return FileResponse(file_path, filename=file_path, media_type='text/csv')
-
     return JSONResponse(content=balance_sheet)
